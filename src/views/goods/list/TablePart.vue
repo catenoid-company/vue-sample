@@ -43,15 +43,25 @@
       </div>
     </div>
   </div>
+  <GoodsDetailModal
+    v-if="isModalOpen"
+    :goods-code="selectedCode"
+    :is-open="isModalOpen"
+    @modal-close="isModalOpen = false"
+  />
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import GoodsDetailModal from '@/views/modal/GoodsDetailModal'
+import { mapState } from 'vuex'
 
 export default {
   name: 'TablePart',
+  components: { GoodsDetailModal },
   data () {
     return {
+      isModalOpen: false,
+      selectedCode: '',
       tableInfoList: [{
         key: 'goodsImage',
         name: '상품 이미지',
@@ -81,12 +91,9 @@ export default {
     ])
   },
   methods: {
-    ...mapActions('goodsStore', [
-      'requestGoodsDetail'
-    ]),
     async onGoodsDetail (code) {
-      await this.requestGoodsDetail(code)
-      console.log('onGoodsDetail', code)
+      this.selectedCode = code
+      this.isModalOpen = true
     }
   }
 }

@@ -1,2 +1,38 @@
 * {box-sizing: border-box}
 body {margin: 0; padding: 0}
+
+button {
+    width: fit-content;
+    height: 36px;
+    border: 0;
+    border-radius: 4px;
+    background-color: #6e31cd;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modalContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+.modal-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 16px;
+}
+.modal-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+}

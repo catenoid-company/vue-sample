@@ -3,9 +3,11 @@
     <div class="login">
       <input v-model="loginId">
       <input v-model="loginPassword" type="password">
-      <button @click="onClickLogin">
-        Login
-      </button>
+      <div style="display: flex; justify-content: center; margin-top: 8px;">
+        <button @click="onClickLogin">
+          Login
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -17,7 +19,7 @@ export default {
   name: 'LoginPage',
   data () {
     return {
-      loginId: '',
+      loginId: 'convergence@catenoid.net',
       loginPassword: ''
     }
   },
@@ -61,6 +63,16 @@ export default {
   box-shadow: 0 8px 16px rgb(0 0 0 / 8%);
   width: 480px;
   margin-bottom: 100px;
-  padding: 48px;
+  padding: 24px 32px;
+  gap: 8px;
+}
+.login input {
+  width: 100%;
+  height: 24px;
+  font-size: 16px;
+  border: 0;
+  border-bottom: 1px solid #cecece;
+}
+.login button {
 }
 </style>
