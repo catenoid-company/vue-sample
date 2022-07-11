@@ -1,24 +1,65 @@
 # vue-sample
 
-## Project setup
+Vue 개발을 위한 샘플 프로젝트의 폴더 구조 및 설계 가이드 문서입니다.
+
+본 문서에서 설명하는 내용은 원활한 개발을 위하여 설계 방향을 제시하는 것으로 github의 여러 프로젝트를 참조하여 구성된 방식입니다.
+
+## 폴더 구조
+1. assets
+   - 이미지, JSON, CSS 파일등 기타 자원을 관리하는 폴더입니다.
+   - 폰트 같은 경우 상위 폴더로 관리하는 경우도 존재합니다.
+2. components
+   - 라우터 페이지에서 자주 사용되는 컴포넌트를 관리하는 폴더입니다.
+   - 기능별로 컴포넌트를 묶어서 관리합니다.
+3. router
+   - 라우트 인덱스 파일을 관리하는 폴더입니다.
+   - 사용 가이드는 https://router.vuejs.org/guide 를 참조하시면 됩니다.
+4. store
+   - 상태관리 모듈 및 스토어 파일을 관리하는 폴더입니다.
+   - 사용 가이드는 https://vuex.vuejs.org 를 참조하시면 됩니다.
+5. views
+   - 라우터 페이지를 폴더별로 관리하는 폴더입니다.
+   - 라우터 경로로 폴더 이름을 구분 짓습니다.
+
+## 설계
+
+### Components 설계
+- 2개 이상의 라우터 페이지에서 사용된다면 공통 컴포넌트로 구성하여 사용하는 것이 중복된 코드를 회피하고 생산성에 도움이 됩니다.
+- 프로젝트에서 메인 화면의 구조에 큰 변화가 없다면 해당 구조를 컴포넌트로 구성하는 것이 좋습니다.
+
+### 화면 설계
+- views 하위 폴더로 도메인 뒤에 붙는 라우터 페이지 경로를 폴더명으로 사용합니다.
 ```
-npm install
+주소: {domain}/goods/detail
+
+├─ views
+│  ├─ goods
+│  │  ├─ detail
+│  │  │  └─ ...
+│  │  └─ ...
+│  └─ ...
+```
+- 경로가 지정된 파일은 객체지향적으로 화면을 나누어 구성합니다.
+- 라우터 페이지의 모든 내용을 아우르는 ~Page, 페이지에서 구역을 표현하는 ~Part 로 구성됩니다.
+```
+├─ detail
+│  ├─ GoodsDetailPage.vue
+│  ├─ FormPart.vue
+│  ├─ HeaderPart.vue
+│  └─ ...
 ```
 
-### Compiles and hot-reloads for development
+### Vuex 설계
+- 단일 스토어는 하나 폴더에 관리합니다.
+- 모듈 단위 폴더에는 비슷한 목적의 다수의 스토어를 관리합니다.
 ```
-npm run serve
+├─ store
+│  ├─ index.js
+│  ├─ goods
+│  │  ├─ goodsModule.js
+│  │  ├─ customerStore.js
+│  │  └─ ...
+│  ├─ stores
+│  │  ├─ loginStore.js
+│  │  └─ ...
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
